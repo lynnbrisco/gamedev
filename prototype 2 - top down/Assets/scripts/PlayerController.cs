@@ -10,6 +10,13 @@ public class PlayerController : MonoBehaviour
     private float hInput;
     private float vInput;
 
+    public float xRange = 8f;
+    public float yRange = 6f;
+
+    public GameObject bullet;
+
+    public Transform firePoint;
+
     // Update is called once per frame
     void Update()
     {
@@ -20,5 +27,28 @@ public class PlayerController : MonoBehaviour
     //player movement
         transform.Translate(Vector3.up * speed * Time.deltaTime * vInput);
         transform.Rotate(Vector3.back, turnspeed * hInput * Time.deltaTime);
-    }
-}    
+
+    //player boundaries and walls
+        if(transform.position.x > xRange)
+        {
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
+        }
+        if(transform.position.x < -xRange)
+        {
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
+        }
+        if(transform.position.x > yRange)
+        {
+            transform.position = new Vector3(transform.position.x, yRange, transform.position.z);
+        }
+        if(transform.position.x < -yRange)
+        {
+            transform.position = new Vector3(transform.position.x, -yRange, transform.position.z);
+        }
+
+    //shooting the projectile
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
+        }
+    }}   
