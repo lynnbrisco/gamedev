@@ -147,13 +147,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230709388}
-  m_LocalRotation: {x: -0, y: -0, z: 0.36998764, w: 0.9290367}
-  m_LocalPosition: {x: 0.009, y: 0.416, z: 0}
-  m_LocalScale: {x: 0.46968487, y: 0.4850653, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0030181722, w: 0.99999547}
+  m_LocalPosition: {x: 0.008999998, y: 0.41600007, z: 0}
+  m_LocalScale: {x: 0.46968487, y: 0.68530023, z: 1}
   m_Children: []
   m_Father: {fileID: 808945671}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 43.43}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.346}
 --- !u!212 &230709390
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -349,6 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e490a252fbc4a46d7b10c55c0bcf4cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 1831167053}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,14 +511,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808945669}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0.51, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7132196, w: 0.7009407}
+  m_LocalPosition: {x: 3.2118158, y: 0.6799684, z: 0}
   m_LocalScale: {x: 1.0677975, y: 1.0959, z: 1}
   m_Children:
   - {fileID: 230709389}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.995}
 --- !u!50 &808945672
 Rigidbody2D:
   serializedVersion: 4
@@ -579,8 +580,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   turnspeed: 75
-  xRange: 12
-  yRange: 6
+  xRange: 8
+  yRange: 5
   bullet: {fileID: 1831167053}
   firePoint: {fileID: 230709389}
 --- !u!1 &1831167053
@@ -625,7 +626,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

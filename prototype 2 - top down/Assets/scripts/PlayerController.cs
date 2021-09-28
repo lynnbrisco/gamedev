@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
     public float yRange = 6f;
 
     public GameObject bullet;
-
     public Transform firePoint;
 
     // Update is called once per frame
@@ -39,11 +38,11 @@ public class PlayerController : MonoBehaviour
         }
         if(transform.position.x > yRange)
         {
-            transform.position = new Vector3(transform.position.x, yRange, transform.position.z);
+            transform.position = new Vector3(yRange, transform.position.x, transform.position.z);
         }
         if(transform.position.x < -yRange)
         {
-            transform.position = new Vector3(transform.position.x, -yRange, transform.position.z);
+            transform.position = new Vector3(-yRange, transform.position.x, transform.position.z);
         }
 
     //shooting the projectile
