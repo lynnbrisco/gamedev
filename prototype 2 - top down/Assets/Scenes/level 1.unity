@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &66286804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 66286805}
+  m_Layer: 0
+  m_Name: firepoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &66286805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66286804}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.897, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 808945671}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &230709388
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +164,7 @@ GameObject:
   - component: {fileID: 230709389}
   - component: {fileID: 230709390}
   m_Layer: 0
-  m_Name: firepoint
+  m_Name: nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +178,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230709388}
   m_LocalRotation: {x: -0, y: -0, z: -0.0030181722, w: 0.99999547}
-  m_LocalPosition: {x: 0.008999998, y: 0.41600007, z: 0}
+  m_LocalPosition: {x: 0.008, y: 0.324, z: 0}
   m_LocalScale: {x: 0.46968487, y: 0.68530023, z: 1}
   m_Children: []
   m_Father: {fileID: 808945671}
@@ -350,6 +380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 1831167053}
+  player: {fileID: 808945671}
+  moveSpeed: 5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,10 +544,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808945669}
   m_LocalRotation: {x: -0, y: -0, z: 0.7132196, w: 0.7009407}
-  m_LocalPosition: {x: 3.2118158, y: 0.6799684, z: 0}
+  m_LocalPosition: {x: 3.24, y: 0.5, z: 0}
   m_LocalScale: {x: 1.0677975, y: 1.0959, z: 1}
   m_Children:
   - {fileID: 230709389}
+  - {fileID: 66286805}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.995}
@@ -580,7 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   turnspeed: 75
-  xRange: 8
+  xRange: 9
   yRange: 5
   bullet: {fileID: 1831167053}
   firePoint: {fileID: 230709389}

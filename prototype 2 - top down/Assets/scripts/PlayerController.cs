@@ -36,13 +36,13 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
         }
-        if(transform.position.x > yRange)
+        if(transform.position.y > yRange)
         {
-            transform.position = new Vector3(yRange, transform.position.x, transform.position.z);
+            transform.position = new Vector3(transform.position.x, yRange, transform.position.z);
         }
-        if(transform.position.x < -yRange)
+        if(transform.position.y < -yRange)
         {
-            transform.position = new Vector3(-yRange, transform.position.x, transform.position.z);
+            transform.position = new Vector3(transform.position.x, -yRange, transform.position.z);
         }
 
     //shooting the projectile
