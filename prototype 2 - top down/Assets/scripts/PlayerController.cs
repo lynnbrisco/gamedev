@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     public float xRange = 8f;
     public float yRange = 6f;
 
-    public GameObject bullet;
     public Transform firePoint;
 
     // Update is called once per frame

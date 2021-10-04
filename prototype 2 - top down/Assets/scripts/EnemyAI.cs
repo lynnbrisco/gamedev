@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     //various definitions
-public GameObject bullet;
 public Transform player;
 public float moveSpeed;
 private Rigidbody2D rb;
