@@ -33,6 +33,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        CamLook();
+        if(Input.GetButtonDown("Jump"))   //jump when spacebar is pressed
+            Jump();
     }
 
     void Move()
@@ -40,6 +43,26 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal") * moveSpeed; //input values
         float z = Input.GetAxis("Vertical") * moveSpeed;
 
-        rb.velocity = new Vector3(x, rb.velocity.y, z);    //maintain velocity on y, get inputs for x and z
+        Vector3 dir = transform.right * x + transform.forward * z;
+        dir.y = rb.velocity.y;
+        rb.velocity = dir;
+    }
+
+    void Jump()
+    {
+        Ray ray = new Ray(transform.position, Vector3.down);
+        if(Physics.Raycast(ray, 1.1f))
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+    }
+
+    void CamLook()
+    {
+        float y = Input.GetAxis("Mouse X") * lookSensitivity; //get mouse input to look around
+        rotX += Input.GetAxis("Mouse Y") * lookSensitivity;
+
+        rotX = Mathf.Clamp(rotX, minLookX, maxLookX); //restrain vertical rotation of camera
+
+        cam.transform.localRotation = Quaternion.Euler(-rotX, 0, 0); //apply code to unity camera
+        transform.eulerAngles += Vector3.up * y;
     }
 }
