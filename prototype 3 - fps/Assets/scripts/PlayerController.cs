@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+//allows weapon script to be referenced
+    private Weapon weapon;
 //movement
     public float moveSpeed; //speed
     public float jumpForce; //how high they jump
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
         //grab and define variables first
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
+        weapon = GetComponent<Weapon>();
     }
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,11 @@ public class PlayerController : MonoBehaviour
         CamLook();
         if(Input.GetButtonDown("Jump"))   //jump when spacebar is pressed
             Jump();
+        if(Input.GetButton("Fire1"))
+        {
+            if(weapon.CanShoot())
+                weapon.Shoot();
+        }
     }
 
     void Move()
