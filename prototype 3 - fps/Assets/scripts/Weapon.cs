@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
 
     public bool CanShoot()
     {
-        if(Time.Time - lastShootTime >= shootRate)
+        if(Time.time - lastShootTime >= shootRate)
         {
             if(curAmmo > 0 || infiniteAmmo == true)
             {
@@ -34,14 +34,17 @@ public class Weapon : MonoBehaviour
         return false;
     }
 
-    public void Shoot();
+    public void Shoot()
     {
-        lastShootTime = Time.Time;
-        curAmmo --:
+        //adjust shoot time, decrease ammo when shot
+        lastShootTime = Time.time;
+        curAmmo --;
 
+        //create the bullet
         GameObject bullet = Instantiate(bulletProjectile, muzzle.position, muzzle.rotation);
 
-        bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * something;
+        //speed of bullet
+        bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
     }
     // Start is called before the first frame update
     void Start()
