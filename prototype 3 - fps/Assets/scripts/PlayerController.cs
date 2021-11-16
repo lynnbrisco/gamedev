@@ -19,17 +19,12 @@ public class PlayerController : MonoBehaviour
     private Camera cam;       //defines needed variables
     private Rigidbody rb;
 
-    void Awake()
+    void Awake() //awake is called when you press play
     {
         //grab and define variables first
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
         weapon = GetComponent<Weapon>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
@@ -72,5 +67,29 @@ public class PlayerController : MonoBehaviour
 
         cam.transform.localRotation = Quaternion.Euler(-rotX, 0, 0); //apply code to unity camera
         transform.eulerAngles += Vector3.up * y;
+    }
+
+    public void TakeDamage(int damage)
+    { //these two mean the same thing, just different ways to say it
+        curHP -= damage;
+        curHP = curHP - damage;
+
+        if(curHp <= 0)
+            Die();
+    }
+
+    void Die()
+    {
+        print("get rekt idiot");
+    }
+
+    public void GiveHealth(int amountToGive)  //health pickup gives hp
+    {
+        curHP = Mathf.Clamp(curHp + amountToGive, 0, maxHP); //give health within a range (clamp acts as a restriction between two values, in this case it is the least and most hp possible)
+    }
+
+    public void GiveAmmo(int amountToGive) //can use same variable as givehealth bc it's attached to separate functions
+    {
+        weapon.curAmmo = Mathf.Clamp(curAmmo + amountToGive, 0, weapon.MaxAmmo); //give ammo within a certain range
     }
 }
