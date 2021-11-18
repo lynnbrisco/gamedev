@@ -34,4 +34,15 @@ public class Pickup : MonoBehaviour
             Destroy(gameObject);  //no infinite pickups for you
         }
     }
+
+    void Update()
+    {
+        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+
+        Vector3 offest = bobbingUp == true ? new Vector3(0,bobHeight / 2,0) : new Vector3(0, -bobHeight /2,0);
+        transform.position = Vector3.MoveTowards(transform.position, startPos + offset, bobSpeed * Time.deltaTime);
+
+        if(transform.position == startPos + offset)
+            bobbingUp = !bobbingUp;
+    }
 }

@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-//allows weapon script to be referenced
-    private Weapon weapon;
+    [Header("stats")]
+    public int curHP;
+    public int maxHP;
+
 //movement
+    [Header("movement")]
     public float moveSpeed; //speed
     public float jumpForce; //how high they jump
 //camera
+    [Header("camera")]
     public float lookSensitivity; //allows sensitivity controls
     public float maxLookX;        //lowest down you can look
     public float minLookX;        //highest up you can look
     private float rotX;           //current x rotation
 
 //components
-    private Camera cam;       //defines needed variables
+    private Camera cam;       //defines needed variables/grabs other scripts
     private Rigidbody rb;
+    private Weapon weapon;
 
     void Awake() //awake is called when you press play
     {
@@ -25,6 +30,7 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
         weapon = GetComponent<Weapon>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -70,9 +76,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void TakeDamage(int damage)
-    { //these two mean the same thing, just different ways to say it
+    {
         curHP -= damage;
-        curHP = curHP - damage;
 
         if(curHp <= 0)
             Die();
@@ -90,6 +95,6 @@ public class PlayerController : MonoBehaviour
 
     public void GiveAmmo(int amountToGive) //can use same variable as givehealth bc it's attached to separate functions
     {
-        weapon.curAmmo = Mathf.Clamp(curAmmo + amountToGive, 0, weapon.MaxAmmo); //give ammo within a certain range
+        weapon.curAmmo = Mathf.Clamp(curAmmo + amountToGive, 0, weapon.maxAmmo); //give ammo within a certain range
     }
 }

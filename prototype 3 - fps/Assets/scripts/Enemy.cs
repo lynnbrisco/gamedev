@@ -19,7 +19,9 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         weapon = GetComponent<Weapon>();
-        target = FindObjectOfType<PlayerController>().gameobject;
+        target = FindObjectOfType<PlayerController>().gameObject;
+
+        InvokeRepeating("UpdatePath", 0.0f, 0.5f);
     }
 
     void UpdatePath()
@@ -54,6 +56,21 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 dir = (target.transform.position - transform.position).normalized;
+        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2deg;
+
+        transform.eularAngles = Vector3.up * angle;
+
+        float dist = Vector3.Distance(transform.position, target.transform.position);
+
+        if(dist <= attackRange)
+        {
+            if(weapon.CanShoot())
+                weapon.Shoot();
+        }
+        else
+        {
+            ChaseTarget();
+        }
     }
 }
