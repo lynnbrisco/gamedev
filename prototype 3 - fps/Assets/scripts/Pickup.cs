@@ -13,6 +13,17 @@ public class Pickup : MonoBehaviour
     public PickupType type;   //what kind of pickup is it?
     public int value;         //how many of said pickup?
 
+    public float rotationSpeed;
+    public float bobSpeed;
+    public float bobHeight;
+
+    private Vector3 startPos;
+    private bool bobbingUp;
+
+    void Start()
+    {
+        startPos = transform.position;
+    }
     void OnTriggerEnter(Collider other)  //if you collide with the player, give its script your info
     {
         if(other.CompareTag("Player"))
@@ -22,11 +33,11 @@ public class Pickup : MonoBehaviour
     //a switch is a chonky if/else statement. infinite if's and elses
             switch(type)  
             {                      //\/\/\/ using a colon means "wait, I'm not done!" a semi colon signifies the end of a block
-                case PickupType.Health():                  //if it's health, do this
+                case PickupType.Health:                  //if it's health, do this
                     player.GiveHealth(value);
                     break; //gotta break after each case to escape
 
-                case PickupType.Ammo():                    //if it's ammo, do this
+                case PickupType.Ammo:                    //if it's ammo, do this
                     player.GiveAmmo(value);
                     break;
             }
@@ -39,7 +50,7 @@ public class Pickup : MonoBehaviour
     {
         transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
 
-        Vector3 offest = bobbingUp == true ? new Vector3(0,bobHeight / 2,0) : new Vector3(0, -bobHeight /2,0);
+        Vector3 offset = bobbingUp == true ? new Vector3(0,bobHeight / 2,0) : new Vector3(0, -bobHeight /2,0);
         transform.position = Vector3.MoveTowards(transform.position, startPos + offset, bobSpeed * Time.deltaTime);
 
         if(transform.position == startPos + offset)

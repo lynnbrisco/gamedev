@@ -6,10 +6,14 @@ public class Enemy : MonoBehaviour
 {
     //variable time
     [Header("Stats")]   //organizes the interface
-    public int curHP, maxHP, ScoreToGive;
+    public int curHP;
+    public int maxHP;
+    public int ScoreToGive;
 
     [Header("Movement")]
-    public float moveSpeed, attackRange, yPathOffest;
+    public float moveSpeed;
+    public float attackRange;
+    public float yPathOffset;
 
     private List<Vector3> path;
     
@@ -24,14 +28,14 @@ public class Enemy : MonoBehaviour
         InvokeRepeating("UpdatePath", 0.0f, 0.5f);
     }
 
-    void UpdatePath()
-    {
-        NavMeshPath navMeshPath = new NavMeshPath();
+    //void UpdatePath()
+    //{
+    //    NavMeshPath navMeshPath = new NavMeshPath();
 
-        NavMesh.CalculatePath(transform.position, target.transform.position, NavMesh.AllAreas, navMeshPath);
+    //    NavMesh.CalculatePath(transform.position, target.transform.position, NavMesh.AllAreas, navMeshPath);
 
-        path = navMeshPath.corners.ToList();
-    }
+    //    path = navMeshPath.corners.ToList();
+    //}
 
     void ChaseTarget()
     {
@@ -51,13 +55,13 @@ public class Enemy : MonoBehaviour
     }
     void Die()
     {
-        destroy.gameObject();
+        Destroy(gameObject);
     }
     // Update is called once per frame
     void Update()
     {
         Vector3 dir = (target.transform.position - transform.position).normalized;
-        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2deg;
+        float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
 
         transform.eularAngles = Vector3.up * angle;
 

@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     [Header("stats")]
     public int curHP;
     public int maxHP;
+    public int curAmmo;
+    public int maxAmmo;
 
 //movement
     [Header("movement")]
@@ -79,7 +81,7 @@ public class PlayerController : MonoBehaviour
     {
         curHP -= damage;
 
-        if(curHp <= 0)
+        if(curHP <= 0)
             Die();
     }
 
@@ -90,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     public void GiveHealth(int amountToGive)  //health pickup gives hp
     {
-        curHP = Mathf.Clamp(curHp + amountToGive, 0, maxHP); //give health within a range (clamp acts as a restriction between two values, in this case it is the least and most hp possible)
+        curHP = Mathf.Clamp(curHP + amountToGive, 0, maxHP); //give health within a range (clamp acts as a restriction between two values, in this case it is the least and most hp possible)
     }
 
     public void GiveAmmo(int amountToGive) //can use same variable as givehealth bc it's attached to separate functions

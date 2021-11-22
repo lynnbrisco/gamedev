@@ -43,7 +43,7 @@ public class Weapon : MonoBehaviour
         //create the bullet
         GameObject bullet = bulletPool.GetObject();
         bullet.transform.position = muzzle.position;
-        bullet.transform.rotation = muzzle.position;
+        bullet.transform.rotation = muzzle.rotation;
 
         //speed of bullet
         bullet.GetComponent<Rigidbody>().velocity = muzzle.forward * bulletSpeed;
