@@ -28,16 +28,16 @@ public class Enemy : MonoBehaviour
         InvokeRepeating("UpdatePath", 0.0f, 0.5f);
     }
 
-    //void UpdatePath()
-    //{
-    //    NavMeshPath navMeshPath = new NavMeshPath();
+    void UpdatePath()
+    {
+        NavMeshPath navMeshPath = new NavMeshPath();
 
-    //    NavMesh.CalculatePath(transform.position, target.transform.position, NavMesh.AllAreas, navMeshPath);
+        NavMesh.CalculatePath(transform.position, target.transform.position, NavMesh.AllAreas, navMeshPath);
 
-    //    path = navMeshPath.corners.ToList();
-    //}
+        path = navMeshPath.corners.ToList();
+    }
 
-    void ChaseTarget()
+    public void ChaseTarget()
     {
         if(path.Count == 0)
             return;
