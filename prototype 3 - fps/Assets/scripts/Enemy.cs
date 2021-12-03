@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using System.Linq;
 
 public class Enemy : MonoBehaviour
 {
@@ -18,7 +20,7 @@ public class Enemy : MonoBehaviour
     private List<Vector3> path;
     
     private Weapon weapon;
-    private GameObject target;
+    public GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,27 +39,15 @@ public class Enemy : MonoBehaviour
         path = navMeshPath.corners.ToList();
     }
 
-    public void ChaseTarget()
+    void ChaseTarget()
     {
         if(path.Count == 0)
             return;
-        transform.position = Vector3.MoveTowards(transform.position, path[0] + new Vector3(0, yPathOffset, 0), moveSpeed *Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, path[0] + new Vector3(0, yPathOffset, 0), moveSpeed + Time.deltaTime);
         if(transform.position == path[0] + new Vector3(0, yPathOffset, 0))
             path.RemoveAt(0);
     }
 
-    public void TakeDamage(int damage)
-    {
-        curHP -= damage;
-
-        if(curHP <= 0)
-            Die();
-    }
-    void Die()
-    {
-        Destroy(gameObject);
-    }
-    // Update is called once per frame
     void Update()
     {
         Vector3 dir = (target.transform.position - transform.position).normalized;
@@ -76,5 +66,17 @@ public class Enemy : MonoBehaviour
         {
             ChaseTarget();
         }
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        curHP -= damage;
+
+        if(curHP <= 0)
+            Die();
+    }
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }

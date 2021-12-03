@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 85f66303d7f3c45a2980516c2158dad6, type: 2}
 --- !u!1 &34972568
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,8 +139,8 @@ GameObject:
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &34972569
 Transform:
@@ -235,8 +235,8 @@ GameObject:
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &255558208
 BoxCollider:
@@ -312,7 +312,7 @@ Transform:
   m_LocalScale: {x: -0.6640406, y: 6.7342, z: 34.355064}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90.128, z: 0}
 --- !u!1 &304927819
 GameObject:
@@ -328,6 +328,8 @@ GameObject:
   - component: {fileID: 304927823}
   - component: {fileID: 304927822}
   - component: {fileID: 304927820}
+  - component: {fileID: 304927821}
+  - component: {fileID: 304927827}
   m_Layer: 0
   m_Name: enemy
   m_TagString: Untagged
@@ -347,14 +349,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ab784e3eb184ac29e01ba41a88960d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletProjectile: {fileID: 2291840872838401933, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
+  bulletPool: {fileID: 304927827}
   muzzle: {fileID: 1975181164}
-  curAmmo: 0
-  maxAmmo: 0
+  curAmmo: 5
+  maxAmmo: 5
   infiniteAmmo: 1
   bulletSpeed: 50
-  shootRate: 0.5
+  shootRate: 0.2
   lastShootTime: 0
+--- !u!114 &304927821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304927819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79c6beb9087b471eb9f394c6097ad83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curHP: 20
+  maxHP: 21
+  ScoreToGive: 50
+  moveSpeed: 5
+  attackRange: 10
+  yPathOffset: 4
 --- !u!54 &304927822
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -447,8 +467,22 @@ Transform:
   m_Children:
   - {fileID: 1200747153}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &304927827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304927819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7165a895ad7b949c6859e5e8dbdf05d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objPrefab: {fileID: 2291840872838401933, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
+  createOnStart: 5
 --- !u!1 &340621445
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,8 +499,8 @@ GameObject:
   m_Name: Cylinder (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &340621446
 Transform:
@@ -560,8 +594,9 @@ GameObject:
   - component: {fileID: 695824071}
   - component: {fileID: 695824072}
   - component: {fileID: 695824073}
+  - component: {fileID: 695824074}
   m_Layer: 0
-  m_Name: player
+  m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -643,7 +678,7 @@ Transform:
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 184.929, z: 0}
 --- !u!54 &695824071
 Rigidbody:
@@ -673,6 +708,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6830c9e9a1d45788eaf04f9569b67a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curHP: 10
+  maxHP: 10
+  curAmmo: 5
+  maxAmmo: 5
   moveSpeed: 10
   jumpForce: 5
   lookSensitivity: 25
@@ -690,14 +729,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ab784e3eb184ac29e01ba41a88960d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletProjectile: {fileID: 2291840872838401933, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
+  bulletPool: {fileID: 695824074}
   muzzle: {fileID: 1159163381}
-  curAmmo: 0
-  maxAmmo: 0
+  curAmmo: 5
+  maxAmmo: 5
   infiniteAmmo: 1
   bulletSpeed: 50
-  shootRate: 0.5
+  shootRate: 0.2
   lastShootTime: 0
+--- !u!114 &695824074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695824066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7165a895ad7b949c6859e5e8dbdf05d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objPrefab: {fileID: 2291840872838401933, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
+  createOnStart: 5
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,8 +974,8 @@ GameObject:
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1188749217
 BoxCollider:
@@ -998,7 +1051,7 @@ Transform:
   m_LocalScale: {x: -0.6640406, y: 6.7342, z: 34.355064}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90.128, z: 0}
 --- !u!1 &1200747152
 GameObject:
@@ -1113,7 +1166,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1270539969
 BoxCollider:
@@ -1189,7 +1242,7 @@ Transform:
   m_LocalScale: {x: 50, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1362086156
 GameObject:
@@ -1207,8 +1260,8 @@ GameObject:
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1362086157
 BoxCollider:
@@ -1284,7 +1337,7 @@ Transform:
   m_LocalScale: {x: -0.6640406, y: 6.7342, z: 50.564316}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1510090205
 GameObject:
@@ -1302,8 +1355,8 @@ GameObject:
   m_Name: Cylinder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1510090206
 Transform:
@@ -1382,63 +1435,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510090205}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1611060496
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2291840872838401921, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291840872838401921, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.7349586
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291840872838401921, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.61514497
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291840872838401921, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.124899
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291840872838401921, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291840872838401921, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291840872838401921, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291840872838401921, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291840872838401921, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291840872838401921, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291840872838401921, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2291840872838401933, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
-      propertyPath: m_Name
-      value: ammo
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f584ea92a74ea40e0a7dc2474281af52, type: 3}
 --- !u!1 &1621089741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1455,8 +1451,8 @@ GameObject:
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1621089742
 Transform:
@@ -1647,8 +1643,8 @@ GameObject:
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!136 &1878680743
 CapsuleCollider:
@@ -1725,7 +1721,7 @@ Transform:
   m_LocalScale: {x: 2.2782, y: 3.6136806, z: 2.2782}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1900656015
 GameObject:
@@ -1743,8 +1739,8 @@ GameObject:
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!65 &1900656016
 BoxCollider:
@@ -1820,7 +1816,7 @@ Transform:
   m_LocalScale: {x: -0.6640406, y: 6.7342, z: 50.564316}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1917911306
 GameObject:
@@ -1838,8 +1834,8 @@ GameObject:
   m_Name: Cylinder (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1917911307
 Transform:
@@ -1934,8 +1930,8 @@ GameObject:
   m_Name: Cylinder (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1932296074
 Transform:
@@ -2030,8 +2026,8 @@ GameObject:
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1936032192
 Transform:
@@ -2175,5 +2171,5 @@ Transform:
   - {fileID: 1510090206}
   - {fileID: 1917911307}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
