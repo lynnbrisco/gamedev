@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2291840872838401923}
   - component: {fileID: 2291840872838401932}
   - component: {fileID: 7385970153692480204}
+  - component: {fileID: 1128959274}
   m_Layer: 0
   m_Name: ammo
   m_TagString: bullet
@@ -112,3 +113,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1128959274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2291840872838401933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2172dc7ebbc5e444196cfac187d1ca92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  lifeTime: 2
+  hitParticle: {fileID: 8628954992416196877, guid: f12b401fb6da6489ba84a299ae45b985, type: 3}

@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     private List<Vector3> path;
     
     private Weapon weapon;
-    public GameObject target;
+    private GameObject target;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         Vector3 dir = (target.transform.position - transform.position).normalized;
         float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
 
-        transform.eularAngles = Vector3.up * angle;
+        transform.eulerAngles = Vector3.up * angle;
 
         float dist = Vector3.Distance(transform.position, target.transform.position);
 
