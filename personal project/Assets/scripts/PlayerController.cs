@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //change rb velocity for floaty jump
-        float dirX = Input.GetAxis("Horizontal");
+        float dirX = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(dirX * 4.5f, rb.velocity.y);
 
         //jump if spacebar is hit
