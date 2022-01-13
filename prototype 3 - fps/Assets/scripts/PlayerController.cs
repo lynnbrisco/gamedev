@@ -35,9 +35,19 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    void Start()
+    {
+        GameUI.instance.UpdateHealthBar(curHP, maxHP);
+        GameUI.instance.UpdateScoreText(000);
+        GameUI.instance.UpdateAmmoText(weapon.curAmmo, weapon.maxAmmo);
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.instance.gamePaused == true)
+            return;
+
         Move();
         CamLook();
         if(Input.GetButtonDown("Jump"))   //jump when spacebar is pressed
@@ -83,20 +93,24 @@ public class PlayerController : MonoBehaviour
 
         if(curHP <= 0)
             Die();
+
+        GameUI.instance.UpdateHealthBar(curHP, maxHP);
     }
 
     void Die()
     {
-        print("get rekt idiot");
+        GameManager.instance.LoseGame();
     }
 
     public void GiveHealth(int amountToGive)  //health pickup gives hp
     {
         curHP = Mathf.Clamp(curHP + amountToGive, 0, maxHP); //give health within a range (clamp acts as a restriction between two values, in this case it is the least and most hp possible)
+        GameUI.instance.UpdateHealthBar(curHP, maxHP);
     }
 
     public void GiveAmmo(int amountToGive) //can use same variable as givehealth bc it's attached to separate functions
     {
         weapon.curAmmo = Mathf.Clamp(curAmmo + amountToGive, 0, weapon.maxAmmo); //give ammo within a certain range
+        GameUI.instance.UpdateAmmoText(weapon.curAmmo, weapon.maxAmmo);
     }
 }

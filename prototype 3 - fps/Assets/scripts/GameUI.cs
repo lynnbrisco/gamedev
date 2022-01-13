@@ -42,15 +42,32 @@ public class GameUI : MonoBehaviour
     {
         ammoText.text = "Ammo: " + curAmmo + " / " + maxAmmo;
     }
-    // Start is called before the first frame update
-    void Start()
+
+    public void TogglePauseMenu(bool paused)
     {
-        
+        pauseMenu.SetActive(paused);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetEndGameScreen(bool won, int score)
     {
-        
+        endGameScreen.SetActive(true);
+        endGameHeaderText.text = won == true ? "Nice one" : "You suck";
+        endGameHeaderText.color = won == true ? Color.green : Color.red;
+        endGameScoreText.text = "<b>Score</b>\n" + score;
+    }
+    
+    public void OnResumeButtom()
+    {
+        GameManager.instance.TogglePauseGame();
+    }
+
+    public void OnRestartButton()
+    {
+        SceneManager.LoadScene("Game");
+    }
+
+    public void OnMenuButton()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
